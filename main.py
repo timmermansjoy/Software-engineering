@@ -7,7 +7,7 @@ def get_students_from_csv(path):
     student_data = pd.read_csv(path)
     students = []
     for index, row in student_data.iterrows():
-        students.append(Student(row.firstname, row.lastname, row.email, row.student_number))
+        students.append(Student(row.firstname, row.lastname, row.email, row.gender, row.student_number))
     return students       
 
 def make_group(student_list, group_size, group_number):
