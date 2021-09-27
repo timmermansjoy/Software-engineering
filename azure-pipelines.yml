@@ -4,16 +4,31 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+  - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: "ubuntu-latest"
+  strategy:
+  matrix:
+    Python38:
+      python.version: "3.8"
+    Python39:
+      python.version: "3.9"
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  - script: echo Hello, world!
+    displayName: "Run a one-line script"
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  - script: pip install -r requirements.txt
+    displayName: "Install requirements"
+
+  - script: |
+      python -m pip install flake8
+      flake8 .
+    displayName: "Run lint tests"
+
+  - script: |
+      pip install pytest pytest-azurepipelines
+      pip install pytest-cov
+      pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
+    displayName: "pytest"
