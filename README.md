@@ -1,6 +1,6 @@
 # Software-engineering
 
-[![Build Status](<https://dev.azure.com/11904409/Software%20engineering/_apis/build/status/timmermansjoy.Software-engineering%20(1)?branchName=main>)](https://dev.azure.com/11904409/Software%20engineering/_build/latest?definitionId=2&branchName=main)
+[![Build Status](https://dev.azure.com/3AONA/Software%20engineering/_apis/build/status/timmermansjoy.Software-engineering?branchName=refs%2Fpull%2F1%2Fmerge)](https://dev.azure.com/3AONA/Software%20engineering/_build/latest?definitionId=1&branchName=refs%2Fpull%2F1%2Fmerge)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
 <p align="center">
@@ -16,13 +16,13 @@ This project is created for the course Software Engineering at PXL, with the pou
 To use this project it is required to install the dependencies with
 
 ```bash
-pip install -e .
+pip install -e .--use-feature=in-tree-build 
 ```
 
 For develoment it is required to run.
 
 ```bash
-pip install -e ".[development]"
+pip install -e ".[development]" --use-feature=in-tree-build  
 ```
 
 If that doesnt work use `pip3` this is because you also have python 2 installed

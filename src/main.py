@@ -8,7 +8,8 @@ def get_students_from_csv(path):
     students = []
     for index, row in student_data.iterrows():
         students.append(Student(row.firstname, row.lastname, row.email, row.gender, row.student_number))
-    return students       
+    return students
+
 
 def make_group(student_list, group_size, group_number):
     if len(student_list) != group_size:
@@ -20,15 +21,18 @@ def make_group(student_list, group_size, group_number):
             student.add_to_group(group_number)
         return group
 
+
 def find_groupless_students(student_list):
     groupless = []
     for student in student_list:
         if not student.group_number:
             groupless.append(student)
-            
+
+
 def print_students(student_list):
     for student in student_list:
         print(student + "\n")
+
 
 def main():
     file_path = input("Give the path of the file: ")
@@ -51,4 +55,3 @@ def main():
             students_in_group.append(current_student)
         groups.append(make_group(students_in_group, group_size, current_group_index))
         current_group_index += 1
-    
