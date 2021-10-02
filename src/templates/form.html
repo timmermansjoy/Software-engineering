@@ -1,0 +1,35 @@
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <form method="POST" action = "/send" enctype="multipart/form-data">
+        <div>
+            <label for="csv_file">CSV File</label>
+            <input type="file" name="csv_file" id="csv_file">
+        </div>
+        <input type="submit" value="submit">
+    </form>
+    {% if students is defined %}
+        <table>
+            <thead>
+                <th> Number </th>
+                <th> Gender </th>
+                <th> GivenName </th>
+                <th> Surname </th>
+                <th> EmailAddress </th>
+                <th> GUID </th>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td> {{ student['student_number'] }} </td>
+                        <td> {{ student['gender'] }} </td>
+                        <td> {{ student['first_name'] }} </td>
+                        <td> {{ student['last_name'] }} </td>
+                        <td> {{ student['email'] }} </td>
+                        <td> {{ student['GUID'] }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

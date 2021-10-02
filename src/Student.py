@@ -1,10 +1,11 @@
 class Student:
-    def __init__(self, first_name, last_name, email, gender, student_number):
+    def __init__(self, student_number, gender, first_name, last_name, email, GUID):
+        self.student_number = student_number
+        self.gender = gender
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.student_number = student_number
-        self.gender = gender
+        self.GUID = GUID
         self.group_number = None
 
     def add_to_group(self, group_number):
