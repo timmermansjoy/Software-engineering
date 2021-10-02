@@ -9,7 +9,7 @@
 
 ## About
 
-This project is created for the course Software Engineering at PXL, with the pourpose of creating a csv parser that can be used to create groups of students.
+This project is created for the course Software Engineering at PXL, with the purpose of creating a csv parser that can be used to create groups of students.
 
 ## Requirements
 
@@ -26,3 +26,16 @@ pip install -e ".[development]" --use-feature=in-tree-build
 ```
 
 If that doesnt work use `pip3` this is because you also have python 2 installed
+
+## FLASK-application
+To run the FLASK-application, start with installing flask 
+```bash
+pip install flask
+```
+
+Once flask is installed, navigate to the src-folder. Once there, run the following:
+```bash
+set FLASK_ENV=development
+python -m flask run
+```
+The last command will give you the adress to navigate towards to use the app.
