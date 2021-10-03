@@ -16,26 +16,30 @@ This project is created for the course Software Engineering at PXL, with the pur
 To use this project it is required to install the dependencies with
 
 ```bash
-pip install -e .--use-feature=in-tree-build 
+pip install -e . --use-feature=in-tree-build
 ```
 
 For develoment it is required to run.
 
 ```bash
-pip install -e ".[development]" --use-feature=in-tree-build  
+pip install -e ".[development]" --use-feature=in-tree-build
 ```
 
 If that doesnt work use `pip3` this is because you also have python 2 installed
 
 ## FLASK-application
-To run the FLASK-application, start with installing flask 
+
+To run the FLASK-application, start with installing flask
+
 ```bash
 pip install flask
 ```
 
 Once flask is installed, navigate to the src-folder. Once there, run the following:
+
 ```bash
 set FLASK_ENV=development
 python -m flask run
 ```
+
 The last command will give you the adress to navigate towards to use the app.
