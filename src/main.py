@@ -5,10 +5,16 @@ from student import Student
 
 def get_students_from_csv(path):
     student_data = pd.read_csv(path)
-    students = []
-    for index, row in student_data.iterrows():
-        students.append(Student(row.firstname, row.lastname, row.email, row.gender, row.student_number))
-    return students
+    return [
+        Student(
+            row.firstname,
+            row.lastname,
+            row.email,
+            row.gender,
+            row.student_number,
+        )
+        for index, row in student_data.iterrows()
+    ]
 
 
 def make_group(student_list, group_size, group_number):
@@ -23,10 +29,7 @@ def make_group(student_list, group_size, group_number):
 
 
 def find_groupless_students(student_list):
-    groupless = []
-    for student in student_list:
-        if not student.group_number:
-            groupless.append(student)
+    groupless = [student for student in student_list if not student.group_number]
 
 
 def print_students(student_list):
@@ -43,8 +46,7 @@ def main():
     group_size = input("How many students will this group consist of?")
     number_of_groups = len(students) / group_size if len(students) % group_size == 0 else (len(students) / group_size) + 1
     groups = []
-    current_group_index = 1
-    for i in range(number_of_groups):
+    for current_group_index, _ in enumerate(range(number_of_groups), start=1):
         students_in_group = []
         for j in range(group_size):
             student_first_name = input("give the first name of student {}".format(j + 1))
@@ -54,4 +56,3 @@ def main():
             current_student = Student(student_first_name, student_last_name, student_email, student_number)
             students_in_group.append(current_student)
         groups.append(make_group(students_in_group, group_size, current_group_index))
-        current_group_index += 1

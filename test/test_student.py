@@ -12,7 +12,7 @@ def seut():
 
 class TestResource:
     def test_freshStudentNoGroupnumber(self, seut):
-        assert seut.group_number == None
+        assert seut.group_number is None
 
     def test_studentWithGroupHasGroupNumber(self, seut):
         group_size = 1
