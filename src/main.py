@@ -1,6 +1,6 @@
 import pandas as pd
-from Group import Group
-from Student import Student
+from group import Group
+from student import Student
 
 
 def get_students_from_csv(path):

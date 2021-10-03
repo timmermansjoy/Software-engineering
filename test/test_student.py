@@ -9,6 +9,7 @@ def seut():
     seut = Student(0, "m", "firstname", "lastname", "f.n@mail.com", "test12345")
     yield seut
 
+
 class TestResource:
     def test_freshStudentNoGroupnumber(self, seut):
         assert seut.group_number == None
