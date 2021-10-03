@@ -22,10 +22,10 @@ setuptools.setup(name='CSV_Parser',
                      "License :: OSI Approved :: MIT License",
                      "Operating System :: OS Independent",
                  ],
-                 install_requires=['pandas'],
+                 install_requires=["pandas", "flask"],
                  python_requires='>=3.6',
                  extras_require={
                      'development': ["pytest", "pytest-xdist", "pytest-cov", "autopep8"],
-                     'docker': ["PyQt5", "pyyaml", "rospkg", "opencv-python"]
+                     'azure': ["pytest", "pytest-xdist", "pylint", "pytest-cov", "pytest-azurepipelines"]
                  },
                  include_package_data=True)
