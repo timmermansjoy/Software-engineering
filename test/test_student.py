@@ -1,7 +1,7 @@
 import pytest
 
-from student import Student
-from main import make_group
+from src.student import Student
+from src.main import make_group
 
 
 @pytest.fixture()
