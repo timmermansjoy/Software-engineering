@@ -4,7 +4,6 @@ import pandas as pd
 
 app = Flask(__name__)
 
-
 def get_students_from_csv(path):
     student_data = pd.read_csv(path)
     students = []
@@ -18,9 +17,15 @@ def index():
     title = "Software Engineering"
     return render_template("form.html", title=title)
 
+@app.route("/groups", methods=['POST'])
+def groups():
+    title = "Groups"
+    students = get_students_from_csv('temp/students.csv')
+    return render_template("groups.html", title=title, students=students)
 
 @app.route('/send', methods=['POST'])
 def send():
     csv_content = request.files['csv_file']
-    students = get_students_from_csv(csv_content)
+    csv_content.save('temp/students.csv')
+    students = get_students_from_csv('temp/students.csv')
     return render_template('form.html', students=students)
