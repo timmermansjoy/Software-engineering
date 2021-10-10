@@ -36,8 +36,8 @@ class Helper:
 
     def print_students(self):
         for student in self.students:
-            student.name_print() 
-            print()
+            x = student.name_print() 
+            print(x)
 
     def get_student_by_GUID(self, GUID):
         return [student for student in self.students if student.GUID == GUID]
