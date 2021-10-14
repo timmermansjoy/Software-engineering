@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from student import Student
+from src.student import Student
 import pandas as pd
 
 app = Flask(__name__)
