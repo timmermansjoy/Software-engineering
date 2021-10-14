@@ -21,15 +21,18 @@
             <tbody>
                 {% for student in students %}
                     <tr>
-                        <td> {{ student['student_number'] }} </td>
+                        <td> {{ student['number'] }} </td>
                         <td> {{ student['gender'] }} </td>
-                        <td> {{ student['first_name'] }} </td>
-                        <td> {{ student['last_name'] }} </td>
+                        <td> {{ student['given_name'] }} </td>
+                        <td> {{ student['surname'] }} </td>
                         <td> {{ student['email'] }} </td>
                         <td> {{ student['GUID'] }} </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <form action="/groups" method="post" role="form">
+            <input type="submit" name="submit" value="Go to students">
+        </form>
     {% endif %}
 {% endblock %}

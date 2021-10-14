@@ -1,9 +1,10 @@
+
 class Student:
-    def __init__(self, student_number, gender, first_name, last_name, email, GUID):
-        self.student_number = student_number
+    def __init__(self, number, gender, given_name, surname, email, GUID):
+        self.number = number
         self.gender = gender
-        self.first_name = first_name
-        self.last_name = last_name
+        self.given_name = given_name
+        self.surname = surname
         self.email = email
         self.GUID = GUID
         self.group_number = None
@@ -12,4 +13,7 @@ class Student:
         self.group_number = group_number
 
     def info(self):
-        return "{} {} {} \t {} \t {}".format(self.student_number, self.last_name, self.first_name, self.email, self.gender)
+        return "{} {} {} \t {} \t {}".format(self.number, self.given_name, self.surname, self.email, self.gender)
+    
+    def name_print(self):
+        return "{} {}".format(self.given_name, self.surname)
