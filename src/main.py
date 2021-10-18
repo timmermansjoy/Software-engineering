@@ -1,10 +1,9 @@
 import pandas as pd
-from src.group import Group
-from src.student import Student
-from src.helpers import Helper
+import src
+
 
 def main():
-    h = Helper()
+    h = src.Helper()
     file_path = input("Give the path of the file: ")
     newline = input("Give the newline character: ")
     delimiter = input("Give the delimiter character: ")
@@ -20,6 +19,6 @@ def main():
             student_last_name = input("give the last name of student {}".format(j + 1))
             student_email = input("give the e-mail of student {}".format(j + 1))
             student_number = input("give the number of student{}".format(j + 1))
-            current_student = Student(student_first_name, student_last_name, student_email, student_number)
+            current_student = src.Student(student_first_name, student_last_name, student_email, student_number)
             students_in_group.append(current_student)
         groups.append(h.make_group(students_in_group, group_size, current_group_index))
