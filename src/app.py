@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from src.student import Student
 import pandas as pd
+import src
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ def get_students_from_csv(path):
     student_data = pd.read_csv(path)
     students = []
     for index, row in student_data.iterrows():
-        students.append(Student(row.Number, row.Gender, row.GivenName, row.Surname, row.EmailAddress, row.GUID))
+        students.append(src.Student(row.Number, row.Gender, row.GivenName, row.Surname, row.EmailAddress, row.GUID))
     return students
 
 
