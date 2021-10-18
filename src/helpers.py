@@ -11,7 +11,7 @@ class Helper:
 
     def get_students_from_csv(self, path):
         student_data = pd.read_csv(path)
-        self.students =  [
+        self.students = [
             src.Student(
                 row.firstname,
                 row.lastname,

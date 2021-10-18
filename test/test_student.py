@@ -2,7 +2,6 @@ import pytest
 import src
 
 
-
 @pytest.fixture()
 def sut():
     sut = src.Student(0, "m", "firstname", "lastname", "f.n@mail.com", "test12345")
