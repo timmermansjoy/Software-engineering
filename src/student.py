@@ -14,6 +14,6 @@ class Student:
 
     def info(self):
         return "{} {} {} \t {} \t {}".format(self.number, self.given_name, self.surname, self.email, self.gender)
-    
+
     def name_print(self):
         return "{} {}".format(self.given_name, self.surname)
