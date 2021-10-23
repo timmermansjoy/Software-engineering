@@ -1,4 +1,3 @@
-
 class Student:
     def __init__(self, number, gender, given_name, surname, email, GUID):
         self.number = number
