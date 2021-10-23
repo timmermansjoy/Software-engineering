@@ -1,0 +1,25 @@
+name: code formatting
+
+# Controls when the action will run.
+on: [push, pull_request]
+
+jobs:
+  format:
+    name: lint and format code
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+      - name: Install Python dependencies
+        run: |
+          pip install flake8 black
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          black: true
+          # flake8: true
+          auto_fix: true

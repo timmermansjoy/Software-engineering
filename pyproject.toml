@@ -1,0 +1,65 @@
+[project]
+name = "CSV_Parser"
+version = "0.0.1"
+description = "A csv parsing tool."
+authors = [
+    "Joy Timmermans",
+    "Nikki Bruls",
+    "Stijn Jacobs",
+    "Karel Sajdak",
+    "Wiktor Kosinski"
+]
+license = "MIT"
+readme = "README.md"
+python = "^3.8"
+
+classifiers = [
+    "Topic :: Software Development"
+]
+
+# Requirements
+[dependencies]
+
+
+[dev-dependencies]
+black = { version = "^18.3-alpha.0", python = "^3.8" }
+
+
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
+build-backend = "setuptools.build_meta"
+
+
+
+[flake8]
+ignore = "E501"
+max-complexity = 10
+
+
+[tool.black]
+line-length = 120
+target_version = ['py36']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''

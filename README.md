@@ -2,6 +2,7 @@
 
 [![Build Status](https://dev.azure.com/3AONA/Software%20engineering/_apis/build/status/timmermansjoy.Software-engineering?branchName=refs%2Fpull%2F5%2Fmerge)](https://dev.azure.com/3AONA/Software%20engineering/_build/latest?definitionId=1&branchName=refs%2Fpull%2F5%2Fmerge)
 ![Run all tests](https://github.com/timmermansjoy/Software-engineering/actions/workflows/run_tests.yml/badge.svg)
+[![DeepSource](https://deepsource.io/gh/timmermansjoy/Software-engineering.svg/?label=active+issues&show_trend=true&token=fNqmvRX-yr1W5fMA9Ic-rBOa)](https://deepsource.io/gh/timmermansjoy/Software-engineering/?ref=repository-badge)
 ![Run all tests](https://github.com/timmermansjoy/Software-engineering/actions/workflows/main_3tina.yml/badge.svg)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
