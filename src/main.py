@@ -10,7 +10,9 @@ def main():
     quote_character = input("Give the quote character: ")
     students = h.get_students_from_csv(file_path, newline, delimiter, quote_character)
     group_size = input("How many students will this group consist of?")
-    number_of_groups = len(students) / group_size if len(students) % group_size == 0 else (len(students) / group_size) + 1
+    number_of_groups = (
+        len(students) / group_size if len(students) % group_size == 0 else (len(students) / group_size) + 1
+    )
     groups = []
     for current_group_index, _ in enumerate(range(number_of_groups), start=1):
         students_in_group = []
