@@ -3,12 +3,9 @@ import src
 
 
 def main():
-    h = src.Helper()
+    helper = src.Helper()
     file_path = input("Give the path of the file: ")
-    newline = input("Give the newline character: ")
-    delimiter = input("Give the delimiter character: ")
-    quote_character = input("Give the quote character: ")
-    students = h.get_students_from_csv(file_path, newline, delimiter, quote_character)
+    students = helper.get_students_from_csv(file_path)
     group_size = input("How many students will this group consist of?")
     number_of_groups = (
         len(students) / group_size if len(students) % group_size == 0 else (len(students) / group_size) + 1
@@ -23,4 +20,4 @@ def main():
             student_number = input("give the number of student{}".format(j + 1))
             current_student = src.Student(student_first_name, student_last_name, student_email, student_number)
             students_in_group.append(current_student)
-        groups.append(h.make_group(students_in_group, group_size, current_group_index))
+        groups.append(helper.make_group(students_in_group, group_size, current_group_index))

@@ -4,23 +4,24 @@ import src
 
 class Helper:
     def __init__(self):
-        self.students = None
+        self.students = []
 
     def setHelperStudents(self, students):
         self.students = students
 
-    def get_students_from_csv(self, path):
-        student_data = pd.read_csv(path)
-        self.students = [
-            src.Student(
-                row.firstname,
-                row.lastname,
-                row.email,
-                row.gender,
-                row.student_number,
-            )
-            for index, row in student_data.iterrows()
-        ]
+    def get_students_from_csv(self, file):
+        student_data = pd.read_csv(file)
+        for _, row in student_data.iterrows():
+            student = src.Student(
+                        number=row["Number"],
+                        given_name=row["GivenName"],
+                        surname=row["Surname"],
+                        email=row["EmailAddress"],
+                        gender=row["Gender"],
+                        GUID=row["GUID"],
+                    )
+            self.students.append(student)
+        return self.students
 
     def make_group(self, students_in_group, group_size, group_number):
         if len(students_in_group) != group_size:

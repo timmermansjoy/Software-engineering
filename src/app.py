@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, abort
+from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import pandas as pd
 import src
@@ -10,26 +10,18 @@ app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
 app.config["UPLOAD_PATH"] = "uploads"
 
 
-#! We have this in helpers? can this be deleted?
-def get_students_from_csv(path):
-    student_data = pd.read_csv(path)
-    students = []
-    for index, row in student_data.iterrows():
-        students.append(src.Student(row.Number, row.Gender, row.GivenName, row.Surname, row.EmailAddress, row.GUID))
-    return students
-
-
 # @app.route("/")
 # def index():
 #     title = "Software Engineering"
 #     return render_template("form.html", title=title)
+
 
 title = "ClassMate"
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", title=title)
+        return render_template("index.html", title=title)
 
 
 @app.route("/", methods=["POST"])
@@ -40,18 +32,25 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
-        uploaded_file.save(os.path.join(app.config["UPLOAD_PATH"], filename))
-    return redirect(url_for("index"))
+        helper = src.Helper()
+        students = helper.get_students_from_csv(uploaded_file)
+        ## TODO: the students variable should be a list of Student objects. Instead this is empty.
+        print(students)
+       ## TODO: redirect isnt redirecting.
+       ## TODO: redirect isnt redirectingk.
+    return redirect(url_for("test", students=students))
 
 
 @app.route("/test")
-def test():
-    return render_template("test.html", title=title)
+def test(students=None):
+    print(students)
+    return render_template("test.html", title=title, students=students)
+
+
 
 
 @app.route("/groups", methods=["POST"])
 def groups():
-    title = "Groups"
     students = get_students_from_csv("temp/students.csv")
     return render_template("groups.html", title=title, students=students)
 
@@ -62,3 +61,9 @@ def send():
     csv_content.save("temp/students.csv")
     students = get_students_from_csv("temp/students.csv")
     return render_template("form.html", students=students)
+
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
