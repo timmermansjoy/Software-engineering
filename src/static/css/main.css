@@ -1,0 +1,28 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  margin: auto;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20vh auto 5vh auto;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0vh auto 5vh auto;
+}
+
+.dropzone {
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: auto;
+}
