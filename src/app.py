@@ -21,7 +21,7 @@ title = "ClassMate"
 
 @app.route("/")
 def index():
-        return render_template("index.html", title=title)
+    return render_template("index.html", title=title)
 
 
 @app.route("/", methods=["POST"])
@@ -36,8 +36,8 @@ def upload_files():
         students = helper.get_students_from_csv(uploaded_file)
         ## TODO: the students variable should be a list of Student objects. Instead this is empty.
         print(students)
-       ## TODO: redirect isnt redirecting.
-       ## TODO: redirect isnt redirectingk.
+    ## TODO: redirect isnt redirecting.
+    ## TODO: redirect isnt redirectingk.
     return redirect(url_for("test", students=students))
 
 
@@ -45,8 +45,6 @@ def upload_files():
 def test(students=None):
     print(students)
     return render_template("test.html", title=title, students=students)
-
-
 
 
 @app.route("/groups", methods=["POST"])
@@ -61,8 +59,6 @@ def send():
     csv_content.save("temp/students.csv")
     students = get_students_from_csv("temp/students.csv")
     return render_template("form.html", students=students)
-
-
 
 
 if __name__ == "__main__":

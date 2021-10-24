@@ -13,13 +13,13 @@ class Helper:
         student_data = pd.read_csv(file)
         for _, row in student_data.iterrows():
             student = src.Student(
-                        number=row["Number"],
-                        given_name=row["GivenName"],
-                        surname=row["Surname"],
-                        email=row["EmailAddress"],
-                        gender=row["Gender"],
-                        GUID=row["GUID"],
-                    )
+                number=row["Number"],
+                given_name=row["GivenName"],
+                surname=row["Surname"],
+                email=row["EmailAddress"],
+                gender=row["Gender"],
+                GUID=row["GUID"],
+            )
             self.students.append(student)
         return self.students
 
