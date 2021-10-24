@@ -1,10 +1,51 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
   margin: auto;
+  background: linear-gradient(230deg, #e792a4, #f7c873, #72d3dd, #8372dd);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 40s ease infinite;
+  -moz-animation: AnimationName 40s ease infinite;
+  animation: AnimationName 40s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 67%;
+  }
+  50% {
+    background-position: 100% 34%;
+  }
+  100% {
+    background-position: 0% 67%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 67%;
+  }
+  50% {
+    background-position: 100% 34%;
+  }
+  100% {
+    background-position: 0% 67%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 67%;
+  }
+  50% {
+    background-position: 100% 34%;
+  }
+  100% {
+    background-position: 0% 67%;
+  }
 }
 
 h1 {
+  font-size: 2.5em;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +53,8 @@ h1 {
 }
 
 p {
+  font-size: large;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +62,7 @@ p {
 }
 
 .dropzone {
+  opacity: 0.7;
   border-radius: 25px;
   display: flex;
   justify-content: center;

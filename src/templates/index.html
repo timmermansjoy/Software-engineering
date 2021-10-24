@@ -9,17 +9,11 @@
       href="{{ url_for('static', filename='css/main.css') }}"
     />
   </head>
-  <body>
-    <h1 class="center">{{title}}</h1>
+  <body class="animation">
+    <h1 class="css-selector">{{title}}</h1>
     <p class="center">the csv parsing tool for software engineering</p>
     {% block content %}
-    <!-- <form action="{{ url_for('upload_files') }}" class="dropzone"></form> -->
-    <form
-      method="POST"
-      action="/send"
-      enctype="multipart/form-data"
-      class="dropzone"
-    ></form>
+    <form action="{{ url_for('upload_files') }}" class="dropzone"></form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
     {% endblock %}
   </body>
