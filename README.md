@@ -1,10 +1,9 @@
 # Software-engineering
 
-[![Build Status](https://dev.azure.com/3AONA/Software%20engineering/_apis/build/status/timmermansjoy.Software-engineering?branchName=refs%2Fpull%2F5%2Fmerge)](https://dev.azure.com/3AONA/Software%20engineering/_build/latest?definitionId=1&branchName=refs%2Fpull%2F5%2Fmerge)
+[![Build Status](https://dev.azure.com/3AONA/Software%20engineering/_apis/build/status/timmermansjoy.Software-engineering?branchName=main)](https://dev.azure.com/3AONA/Software%20engineering/_build/latest?definitionId=1&branchName=main)
 ![Run all tests](https://github.com/timmermansjoy/Software-engineering/actions/workflows/run_tests.yml/badge.svg)
-[![DeepSource](https://deepsource.io/gh/timmermansjoy/Software-engineering.svg/?label=active+issues&show_trend=true&token=fNqmvRX-yr1W5fMA9Ic-rBOa)](https://deepsource.io/gh/timmermansjoy/Software-engineering/?ref=repository-badge)
 ![Run all tests](https://github.com/timmermansjoy/Software-engineering/actions/workflows/main_3tina.yml/badge.svg)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![DeepSource](https://deepsource.io/gh/timmermansjoy/Software-engineering.svg/?label=active+issues&show_trend=true&token=fNqmvRX-yr1W5fMA9Ic-rBOa)](https://deepsource.io/gh/timmermansjoy/Software-engineering/?ref=repository-badge)
 
 <p align="center">
   <img width="500px" src="https://images.unsplash.com/photo-1538474705339-e87de81450e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
@@ -46,3 +45,11 @@ python -m flask run
 ```
 
 The last command will give you the adress to navigate towards to use the app.
+
+## gunicorn
+
+to run on azure you need to use gunicorn with the command:
+
+```
+gunicorn --bind=0.0.0.0 --timeout 600  src.app:app
+```
