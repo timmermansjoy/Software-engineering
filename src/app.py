@@ -35,12 +35,12 @@ def upload_files():
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
         students = helper.get_students_from_csv(uploaded_file)
-        print('helper students', helper.students)
+        print("helper students", helper.students)
         ## TODO: the students variable should be a list of Student objects. Instead this is empty.
     ## TODO: redirect isnt redirecting.
     ## TODO: redirect isnt redirectingk.
     print("heading to test")
-    return redirect(url_for('test'))
+    return redirect(url_for("test"))
 
 
 @app.route("/test")
