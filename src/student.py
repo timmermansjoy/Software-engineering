@@ -8,10 +8,10 @@ class Student:
         self.GUID = GUID
         self.group_number = None
 
-    def __str__ (self):
+    def __str__(self):
         return f"{self.number} {self.given_name} {self.surname}"
 
-    def __repr__ (self):
+    def __repr__(self):
         return f"student object: {self.number}"
 
     def add_to_group(self, group_number):
