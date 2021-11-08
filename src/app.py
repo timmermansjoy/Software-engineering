@@ -3,7 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import pandas as pd
 import src
+from src import student
 
+helper = src.Helper()
 
 app = Flask(__name__)
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
@@ -33,7 +35,6 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
-    
         people = helper.get_people_from_csv(uploaded_file)
         ## TODO: the students variable should be a list of Student objects. Instead this is empty.
         print(people)
@@ -46,7 +47,6 @@ def upload_files():
 def test(students=[]):
     print(helper.people)
     return render_template("test.html", title=title, students=helper.people)
-
 
 @app.route("/groups", methods=["POST"])
 def groups():
