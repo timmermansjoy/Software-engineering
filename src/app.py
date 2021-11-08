@@ -48,6 +48,7 @@ def test(students=[]):
     print(helper.people)
     return render_template("test.html", title=title, students=helper.people)
 
+
 @app.route("/groups", methods=["POST"])
 def groups():
     students = helper.get_people_from_csv("temp/students.csv")
