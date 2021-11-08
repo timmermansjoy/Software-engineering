@@ -8,6 +8,7 @@ import src
 app = Flask(__name__)
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
 app.config["UPLOAD_PATH"] = "uploads"
+helper = src.Helper()
 
 
 # @app.route("/")
@@ -32,33 +33,32 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
-        helper = src.Helper()
-        students = helper.get_students_from_csv(uploaded_file)
+    
+        people = helper.get_people_from_csv(uploaded_file)
         ## TODO: the students variable should be a list of Student objects. Instead this is empty.
-        print(students)
+        print(people)
     ## TODO: redirect isnt redirecting.
     ## TODO: redirect isnt redirectingk.
-    return redirect(url_for("test", students=students))
+    return redirect(url_for("test", students=people))
 
 
-@app.route("/test")
-def test(students=None):
-    print(students)
-    return render_template("test.html", title=title, students=students)
+@app.route("/test", methods=["GET"])
+def test(students=[]):
+    print(helper.people)
+    return render_template("test.html", title=title, students=helper.people)
 
 
 @app.route("/groups", methods=["POST"])
 def groups():
-    students = get_students_from_csv("temp/students.csv")
-    return render_template("groups.html", title=title, students=students)
+    students = helper.get_people_from_csv("temp/students.csv")
+    return render_template("groups.html", title=title, students=helper.people)
 
 
 @app.route("/send", methods=["POST"])
 def send():
     csv_content = request.files["csv_file"]
     csv_content.save("temp/students.csv")
-    students = get_students_from_csv("temp/students.csv")
-    return render_template("form.html", students=students)
+    return render_template("form.html", students=helper.people)
 
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ class TestResource:
         group_size = 1
         student_list = [sut]
         helper = src.Helper()
-        helper.setHelperStudents(student_list)
+        helper.set_helper_people(student_list)
         helper.make_group(student_list, group_size, 1)
         assert sut.group_number == 1
 

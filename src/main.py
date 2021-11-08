@@ -5,7 +5,7 @@ import src
 def main():
     helper = src.Helper()
     file_path = input("Give the path of the file: ")
-    students = helper.get_students_from_csv(file_path)
+    students = helper.get_people_from_csv(file_path)
     group_size = input("How many students will this group consist of?")
     number_of_groups = (
         len(students) / group_size if len(students) % group_size == 0 else (len(students) / group_size) + 1
