@@ -70,3 +70,15 @@ p {
   width: 40%;
   margin: auto;
 }
+
+table {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+td {
+  padding: 10px;
+  text-align: center;
+}

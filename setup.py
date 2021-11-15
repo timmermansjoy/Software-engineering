@@ -23,7 +23,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=["pandas", "flask"],
+    install_requires=["pandas", "flask", "Flask-Dropzone"],
     python_requires=">=3.6",
     extras_require={
         "development": ["pytest", "pytest-xdist", "pytest-cov", "autopep8"],
