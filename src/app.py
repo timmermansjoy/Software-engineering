@@ -14,6 +14,7 @@ dropzone = Dropzone(app)
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
 app.config["UPLOAD_PATH"] = "uploads"
 app.config["DROPZONE_REDIRECT_VIEW"] = "test"
+helper = src.Helper()
 
 
 # @app.route("/")
@@ -45,27 +46,24 @@ def upload_files():
     return redirect(url_for("test"))
 
 
-@app.route("/test")
-def test():
-    print("entered test")
-    print(helper.students)
-    print("rendering template I hope?")
-    return render_template("test.html", title=title, students=helper.students)
+@app.route("/test", methods=["GET"])
+def test(students=[]):
+    print(helper.people)
+    return render_template("test.html", title=title, students=helper.people)
 
 
 
 @app.route("/groups", methods=["POST"])
 def groups():
-    students = get_students_from_csv("temp/students.csv")
-    return render_template("groups.html", title=title, students=students)
+    students = helper.get_people_from_csv("temp/students.csv")
+    return render_template("groups.html", title=title, students=helper.people)
 
 
 @app.route("/send", methods=["POST"])
 def send():
     csv_content = request.files["csv_file"]
     csv_content.save("temp/students.csv")
-    students = get_students_from_csv("temp/students.csv")
-    return render_template("form.html", students=students)
+    return render_template("form.html", students=helper.people)
 
 
 if __name__ == "__main__":

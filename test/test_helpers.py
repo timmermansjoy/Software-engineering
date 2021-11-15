@@ -15,8 +15,8 @@ def sut():
 class TestResource:
     def test_make_group(self, sut):
         helper = src.Helper()
-        helper.setHelperStudents(sut)
-        thisGroup = helper.make_group(sut, 4, 1)
+        helper.set_helper_people(sut)
+        helper.make_group(sut, 4, 1)
         for student in sut:
             assert student.group_number == 1
 
@@ -28,7 +28,7 @@ def test_print_students(capfd):
     sut3 = src.Student(3, "m", "firstname3", "lastname3", "f3.n1@mail1.com1", "test3")
     sut = [sut0, sut1, sut2, sut3]
     helper = src.Helper()
-    helper.setHelperStudents(sut)
-    helper.print_students()
+    helper.set_helper_people(sut)
+    helper.print_people()
     out, err = capfd.readouterr()
     assert out == "firstname lastname\nfirstname1 lastname1\nfirstname2 lastname2\nfirstname3 lastname3\n"

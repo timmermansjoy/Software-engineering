@@ -5,28 +5,29 @@
 {% if students %}
 
 <table>
-  <thead>
-    <th>Number</th>
-    <th>Gender</th>
-    <th>GivenName</th>
-    <th>Surname</th>
-    <th>EmailAddress</th>
-    <th>GUID</th>
-  </thead>
-  <tbody>
-    {% for student in students %}
-    <tr>
-      <td>{{ student['number'] }}</td>
-      <td>{{ student['gender'] }}</td>
-      <td>{{ student['given_name'] }}</td>
-      <td>{{ student['surname'] }}</td>
-      <td>{{ student['email'] }}</td>
-      <td>{{ student['GUID'] }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
+    <thead>
+        <th>Number</th>
+        <th>Gender</th>
+        <th>GivenName</th>
+        <th>Surname</th>
+        <th>EmailAddress</th>
+        <th>GUID</th>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student['number'] }}</td>
+            <td>{{ student['gender'] }}</td>
+            <td>{{ student['given_name'] }}</td>
+            <td>{{ student['surname'] }}</td>
+            <td>{{ student['email'] }}</td>
+            <td>{{ student['GUID'] }}</td>
+            <td>{% if student['is_teacher'] %}Teacher{% else %}Student{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 <form action="/groups" method="post" role="form">
-  <input type="submit" name="submit" value="Go to students" />
+    <input type="submit" name="submit" value="Go to students" />
 </form>
 {% endif %} {% endblock %}
