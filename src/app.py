@@ -13,7 +13,7 @@ app.config["UPLOAD_PATH"] = "uploads"
 helper = src.Helper()
 
 
-# @app.route("/")
+# @app.route("/")</form></form>
 # def index():
 #     title = "Software Engineering"
 #     return render_template("form.html", title=title)
@@ -26,8 +26,13 @@ title = "ClassMate"
 def index():
     return render_template("index.html", title=title)
 
+@app.route("/uploader", methods=["POST"])
+def upload_view():
+    email = request.form
+    return render_template("upload.html", title=title, email=email)
+    
 
-@app.route("/", methods=["POST"])
+@app.route("/upload", methods=["POST"])
 def upload_files():
     uploaded_file = request.files["file"]
     filename = secure_filename(uploaded_file.filename)
@@ -38,8 +43,6 @@ def upload_files():
         people = helper.get_people_from_csv(uploaded_file)
         ## TODO: the students variable should be a list of Student objects. Instead this is empty.
         print(people)
-    ## TODO: redirect isnt redirecting.
-    ## TODO: redirect isnt redirectingk.
     return redirect(url_for("test", students=people))
 
 

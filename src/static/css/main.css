@@ -1,72 +1,82 @@
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: auto;
-  background: linear-gradient(230deg, #e792a4, #f7c873, #72d3dd, #8372dd);
-  background-size: 800% 800%;
-
-  -webkit-animation: AnimationName 40s ease infinite;
-  -moz-animation: AnimationName 40s ease infinite;
-  animation: AnimationName 40s ease infinite;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: auto;
+    background: linear-gradient(230deg, #e792a4, #f7c873, #72d3dd, #8372dd);
+    background-size: 1200% 1200%;
+    -webkit-animation: AnimationName 40s ease infinite;
+    -moz-animation: AnimationName 40s ease infinite;
+    animation: AnimationName 40s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 67%;
-  }
-  50% {
-    background-position: 100% 34%;
-  }
-  100% {
-    background-position: 0% 67%;
-  }
+    0% {
+        background-position: 0% 67%;
+    }
+    50% {
+        background-position: 100% 34%;
+    }
+    100% {
+        background-position: 0% 67%;
+    }
 }
+
 @-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 67%;
-  }
-  50% {
-    background-position: 100% 34%;
-  }
-  100% {
-    background-position: 0% 67%;
-  }
+    0% {
+        background-position: 0% 67%;
+    }
+    50% {
+        background-position: 100% 34%;
+    }
+    100% {
+        background-position: 0% 67%;
+    }
 }
+
 @keyframes AnimationName {
-  0% {
-    background-position: 0% 67%;
-  }
-  50% {
-    background-position: 100% 34%;
-  }
-  100% {
-    background-position: 0% 67%;
-  }
+    0% {
+        background-position: 0% 67%;
+    }
+    50% {
+        background-position: 100% 34%;
+    }
+    100% {
+        background-position: 0% 67%;
+    }
 }
 
 h1 {
-  font-size: 2.5em;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20vh auto 5vh auto;
+    font-size: 2.5em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20vh auto 5vh auto;
 }
 
 p {
-  font-size: large;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0vh auto 5vh auto;
+    font-size: large;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0vh auto 5vh auto;
 }
 
 .dropzone {
-  opacity: 0.7;
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  margin: auto;
+    opacity: 0.7;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin: auto;
+}
+
+.test {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0vh auto 5vh auto;
+    width: 50%;
 }
