@@ -14,7 +14,7 @@ class Helper:
     def get_people_from_csv(self, file):
         person_data = pd.read_csv(file)
         for _, row in person_data.iterrows():
-            if row["EmailAddress"].split("@")[1] == "student.pxl.be":
+            if row['EmailAddress'].split('@')[1] == 'student.pxl.be':
                 person = Student(
                     number=row["Number"],
                     given_name=row["GivenName"],
@@ -23,22 +23,22 @@ class Helper:
                     gender=row["Gender"],
                     GUID=row["GUID"],
                 )
-                print("Student found!")
+                print('Student found!')
                 self.people.append(person)
-            elif row["EmailAddress"].split("@")[1] == "pxl.be":
+            elif row['EmailAddress'].split('@')[1] == 'pxl.be':
                 person = Teacher(
-                    number=row["Number"],
-                    given_name=row["GivenName"],
-                    surname=row["Surname"],
-                    email=row["EmailAddress"],
-                    gender=row["Gender"],
-                    GUID=row["GUID"],
+                    number=row['Number'],
+                    given_name=row['GivenName'],
+                    surname=row['Surname'],
+                    email=row['EmailAddress'],
+                    gender=row['Gender'],
+                    GUID=row['GUID']
                 )
-                print("Teacher found!")
+                print('Teacher found!')
                 self.people.append(person)
             else:
-                raise Exception("Invalid email???? :(((")
-
+                raise Exception('Invalid email???? :(((')
+            
         return self.people
 
     def make_group(self, students_in_group, group_size, group_number):

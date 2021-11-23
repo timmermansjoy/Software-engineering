@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
-from flask_dropzone import Dropzone
 from werkzeug.utils import secure_filename
 import pandas as pd
 import src
@@ -9,11 +8,8 @@ from src import student
 helper = src.Helper()
 
 app = Flask(__name__)
-dropzone = Dropzone(app)
-
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
 app.config["UPLOAD_PATH"] = "uploads"
-app.config["DROPZONE_REDIRECT_VIEW"] = "test"
 helper = src.Helper()
 
 
@@ -39,19 +35,18 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
-        helper.get_students_from_csv(uploaded_file)
-        print("helper students", helper.students)
+        people = helper.get_people_from_csv(uploaded_file)
+        ## TODO: the students variable should be a list of Student objects. Instead this is empty.
+        print(people)
     ## TODO: redirect isnt redirecting.
-    print("heading to test")
-    return redirect(url_for("test"))
+    ## TODO: redirect isnt redirectingk.
+    return redirect(url_for("test", students=people))
 
 
 @app.route("/test", methods=["GET"])
 def test(students=[]):
     print(helper.people)
     return render_template("test.html", title=title, students=helper.people)
-
-
 
 @app.route("/groups", methods=["POST"])
 def groups():
