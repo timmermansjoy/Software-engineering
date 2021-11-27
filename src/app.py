@@ -26,11 +26,12 @@ title = "ClassMate"
 def index():
     return render_template("index.html", title=title)
 
+
 @app.route("/uploader", methods=["POST"])
 def upload_view():
     email = request.form
     return render_template("upload.html", title=title, email=email)
-    
+
 
 @app.route("/upload", methods=["POST"])
 def upload_files():
