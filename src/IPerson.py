@@ -1,5 +1,6 @@
 import abc
 
+
 class Person(abc.ABC):
     @abc.abstractmethod
     def __str__(self):

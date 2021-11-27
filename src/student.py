@@ -1,5 +1,6 @@
 from IPerson import Person
 
+
 class Student(Person):
     def __init__(self, number, gender, given_name, surname, email, GUID):
         self.number = number
@@ -18,10 +19,12 @@ class Student(Person):
         return f"student object: {self.number}"
 
     def info(self):
-        return "{} {} {} \t {} \t {}".format(self.number, self.given_name, self.surname, self.email, self.gender, 'Student')
+        return "{} {} {} \t {} \t {}".format(
+            self.number, self.given_name, self.surname, self.email, self.gender, "Student"
+        )
 
     def name_print(self):
         return "{} {}".format(self.given_name, self.surname)
-    
+
     def add_to_group(self, group_number):
         self.group_number = group_number
