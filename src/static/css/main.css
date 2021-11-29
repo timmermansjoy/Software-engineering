@@ -80,3 +80,17 @@ p {
     margin: 0vh auto 5vh auto;
     width: 50%;
 }
+
+.container {
+    margin: 100px;
+}
+
+a {
+    font-size: large;
+    color: white;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0vh auto 5vh auto;
+    width: 5vw
+}

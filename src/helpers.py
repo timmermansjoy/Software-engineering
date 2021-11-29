@@ -11,8 +11,8 @@ class Helper:
     def set_helper_people(self, people):
         self.people = people
 
-    def get_people_from_csv(self, file):
-        person_data = pd.read_csv(file)
+    def get_people_from_csv(self, filename):
+        person_data = pd.read_csv(f"./data/{filename}")
         for _, row in person_data.iterrows():
             if row["EmailAddress"].split("@")[1] == "student.pxl.be":
                 person = Student(

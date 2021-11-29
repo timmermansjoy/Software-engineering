@@ -1,20 +1,5 @@
-<html>
-
-<head>
-    <title>{{title}}</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon/favicon.ico') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-</head>
-
-<body class="animation">
-    <h1 class="css-selector">{{title}}</h1>
-    <h2>{{email}} :)</h2>
-    <p class="center">the csv parsing tool for software engineering</p>
-    {% block content %}
-    <form action="{{ url_for('upload_files') }}" class="dropzone"></form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
-    {% endblock %}
-</body>
-
-</html>
+{% extends "index.html" %} {% block content %}
+<p class="center">the csv parsing tool for software engineering</p>
+<form action="{{ url_for('upload_files') }}" class="dropzone"></form>
+<a class="btn btn-primary" href="/students"> Upload</a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>{% endblock %}
