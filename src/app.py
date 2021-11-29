@@ -21,31 +21,37 @@ helper = src.Helper()
 
 title = "ClassMate"
 
+
 @app.route("/")
 def index():
     return render_template("index.html", title=title)
 
+
 @app.route("/uploader", methods=["GET"])
 def show_view():
-    if(current_user.split('@')[1] == "pxl.be"):
+    if current_user.split("@")[1] == "pxl.be":
         return
+
 
 @app.route("/uploader", methods=["POST"])
 def upload_view():
-    global current_user 
-    current_user = request.form.get('email')
+    global current_user
+    current_user = request.form.get("email")
     message = ""
-    if ("student.pxl.be" in current_user):
-        return render_template('make_groups.html')
-    elif ("pxl.be" in current_user):
-        name = current_user.split('@')[0].strip('.')
-        if (os.path.exists(f'./data/{name}.csv')):
-            helper.get_people_from_csv(f'{name}.csv')
-            return render_template("students.html", title=title, students=helper.people)            
+    if "student.pxl.be" in current_user:
+        return render_template("make_groups.html")
+    elif "pxl.be" in current_user:
+        name = current_user.split("@")[0].strip(".")
+        if os.path.exists(f"./data/{name}.csv"):
+            helper.get_people_from_csv(f"{name}.csv")
+            return render_template("students.html", title=title, students=helper.people)
         return render_template("upload.html", title=title, email=current_user, message=message)
     else:
         message = "INVALID EMAIL"
-        return render_template('index.html', title=title, error="Please make sure you are using your organization's email.")
+        return render_template(
+            "index.html", title=title, error="Please make sure you are using your organization's email."
+        )
+
 
 @app.route("/upload", methods=["POST"])
 def upload_files():
@@ -55,12 +61,13 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
-        filename = current_user.split('@')[0].strip('.') + '.csv'
-        uploaded_file.save(os.path. join ('./data/', filename))
+        filename = current_user.split("@")[0].strip(".") + ".csv"
+        uploaded_file.save(os.path.join("./data/", filename))
+
 
 @app.route("/students", methods=["POST", "GET"])
 def students():
-    filename = current_user.split('@')[0].strip('.') + '.csv'
+    filename = current_user.split("@")[0].strip(".") + ".csv"
     return render_template("students.html", title=title, students=helper.people)
 
 
