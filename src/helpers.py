@@ -18,7 +18,8 @@ class Helper:
         person_data = pd.read_csv(f"./data/{filename}")
         for _, row in person_data.iterrows():
             if row["EmailAddress"].split("@")[1] == "student.pxl.be":
-                person = self.person_factory.create_person('STUDENT',
+                person = self.person_factory.create_person(
+                    "STUDENT",
                     number=row["Number"],
                     given_name=row["GivenName"],
                     surname=row["Surname"],
@@ -29,7 +30,8 @@ class Helper:
                 print("Student found!")
                 self.people.append(person)
             elif row["EmailAddress"].split("@")[1] == "pxl.be":
-                person = self.person_factory.create_person('TEACHER',
+                person = self.person_factory.create_person(
+                    "TEACHER",
                     number=row["Number"],
                     given_name=row["GivenName"],
                     surname=row["Surname"],

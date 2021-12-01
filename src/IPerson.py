@@ -1,7 +1,8 @@
 # from abc import ABC
-# from abc import abstractmethod 
+# from abc import abstractmethod
 # from abc import ABCMeta
 import abc
+
 
 class Person(abc.ABC):
     @abc.abstractmethod
