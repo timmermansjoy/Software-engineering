@@ -63,6 +63,7 @@ def upload_files():
             return "Invalid file format", 400
         filename = current_user.split("@")[0].strip(".") + ".csv"
         uploaded_file.save(os.path.join("./data/", filename))
+    return redirect(url_for("students"))
 
 
 @app.route("/students", methods=["POST", "GET"])

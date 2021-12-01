@@ -1,30 +1,31 @@
 {% extends "index.html" %} {% block content %} {% if students %}
-<div class='container'>
-    <table>
+<div class='container' style="margin-left: 275px">
+    <table class="table table-light">
         <thead>
-            <th>Number</th>
-            <th>Gender</th>
-            <th>GivenName</th>
-            <th>Surname</th>
-            <th>EmailAddress</th>
-            <th>GUID</th>
+            <th scope=" col ">Number</th>
+            <th scope="col ">Gender</th>
+            <th scope="col ">GivenName</th>
+            <th scope="col ">Surname</th>
+            <th scope="col ">EmailAddress</th>
+            <th scope="col ">GUID</th>
+            <th scope="col ">Role</th>
         </thead>
         <tbody>
             {% for student in students %}
             <tr>
-                <td>{{ student['number'] }}</td>
-                <td>{{ student['gender'] }}</td>
-                <td>{{ student['given_name'] }}</td>
-                <td>{{ student['surname'] }}</td>
-                <td>{{ student['email'] }}</td>
-                <td>{{ student['GUID'] }}</td>
-                <td>{% if student['is_teacher'] %}Teacher{% else %}Student{% endif %}</td>
+                <th scope="row ">{{ student['number'] }}</td>
+                    <td>{{ student['gender'] }}</td>
+                    <td>{{ student['given_name'] }}</td>
+                    <td>{{ student['surname'] }}</td>
+                    <td>{{ student['email'] }}</td>
+                    <td>{{ student['GUID'] }}</td>
+                    <td>{% if student['is_teacher'] %}Teacher{% else %}Student{% endif %}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form action="/groups" method="post" role="form">
-        <input type="submit" name="submit" value="Go to students" />
+    <form action="/groups " method="post " role="form ">
+        <input type="submit " name="submit " value="Go to students " />
     </form>
 </div>
 {% endif %} {% endblock %}

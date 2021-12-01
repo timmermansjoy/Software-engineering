@@ -2,20 +2,23 @@ import pandas as pd
 from student import Student
 from teacher import Teacher
 from group import Group
+from PersonFactory import PersonFactory
 
 
 class Helper:
     def __init__(self):
         self.people = []
+        self.person_factory = PersonFactory()
 
     def set_helper_people(self, people):
         self.people = people
 
     def get_people_from_csv(self, filename):
+        self.people = []
         person_data = pd.read_csv(f"./data/{filename}")
         for _, row in person_data.iterrows():
             if row["EmailAddress"].split("@")[1] == "student.pxl.be":
-                person = Student(
+                person = self.person_factory.create_person('STUDENT',
                     number=row["Number"],
                     given_name=row["GivenName"],
                     surname=row["Surname"],
@@ -26,7 +29,7 @@ class Helper:
                 print("Student found!")
                 self.people.append(person)
             elif row["EmailAddress"].split("@")[1] == "pxl.be":
-                person = Teacher(
+                person = self.person_factory.create_person('TEACHER',
                     number=row["Number"],
                     given_name=row["GivenName"],
                     surname=row["Surname"],

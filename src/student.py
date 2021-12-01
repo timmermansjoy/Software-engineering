@@ -13,10 +13,10 @@ class Student(Person):
         self.is_teacher = False
 
     def __str__(self):
-        return f"{self.number} {self.given_name} {self.surname}"
+        return "{} {} {}".format(self.number, self.given_name, self.surname)
 
     def __repr__(self):
-        return f"student object: {self.number}"
+        return "student object: {}".format(self.number)
 
     def info(self):
         return "{} {} {} \t {} \t {}".format(
