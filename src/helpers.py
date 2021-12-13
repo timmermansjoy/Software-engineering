@@ -16,7 +16,7 @@ class Helper:
     def get_people_from_csv(self, filename):
         self.people = []
         person_data = pd.read_csv(f"./data/{filename}")
-        if 'group_number' not in person_data:
+        if "group_number" not in person_data:
             person_data["group_number"] = 0
         for _, row in person_data.iterrows():
             if row["EmailAddress"].split("@")[1] == "student.pxl.be":
@@ -28,7 +28,7 @@ class Helper:
                     email=row["EmailAddress"],
                     gender=row["Gender"],
                     GUID=row["GUID"],
-                    group_number=row['group_number']
+                    group_number=row["group_number"],
                 )
                 print("Student found!")
                 self.people.append(person)
@@ -41,7 +41,7 @@ class Helper:
                     email=row["EmailAddress"],
                     gender=row["Gender"],
                     GUID=row["GUID"],
-                    group_number=row['group_number']
+                    group_number=row["group_number"],
                 )
                 print("Teacher found!")
                 self.people.append(person)
@@ -56,8 +56,8 @@ class Helper:
         group = Group(students_in_group, group_number)
         for student in students_in_group:
             student.add_to_group(group_number)
-            student_index = student.number -1
-            person_data.at[student_index, 'group_number'] = int(group_number)
+            student_index = student.number - 1
+            person_data.at[student_index, "group_number"] = int(group_number)
             # person_data["group_number"][student.number] = student.group_number
             # person_data.replace({'group_number': {student.number: student.group_number}}, inplace=True)
         person_data.to_csv(f"./data/{filename}", index=False)
@@ -67,7 +67,7 @@ class Helper:
         for person in self.people:
             x = person.name_print()
             print(x)
-            
+
     def get_next_group_number(self):
         group_numbers = [person.group_number for person in self.people if person.group_number is not None]
         if group_numbers:
