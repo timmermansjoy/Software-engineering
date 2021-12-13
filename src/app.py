@@ -54,10 +54,10 @@ def upload_view():
 def find_class():
     teacher = request.form.get("email")
     name = teacher.split("@")
-    if name[1] != 'pxl.be':
+    if name[1] != "pxl.be":
         return render_template("find_class.html", title=title, error="Please enter a valid teacher email.")
-    elif os.path.exists("./data/{}.csv".format(name[0].strip('.'))):
-        helper.get_people_from_csv("{}.csv".format(name[0].strip('.')))
+    elif os.path.exists("./data/{}.csv".format(name[0].strip("."))):
+        helper.get_people_from_csv("{}.csv".format(name[0].strip(".")))
         student = helper.get_person_by_email(current_user)
         if (len(student) == 0):
             return render_template("find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :(")
