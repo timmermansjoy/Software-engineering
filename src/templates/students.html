@@ -19,13 +19,10 @@
                     <td>{{ student['surname'] }}</td>
                     <td>{{ student['email'] }}</td>
                     <td>{{ student['GUID'] }}</td>
-                    <td>{% if student['is_teacher'] %}Teacher{% else %}Student{% endif %}</td>
+                    <td>{% if student['group_number'] == 0 %}Groupless{% else %}{{student['group_number']}}{% endif %}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form action="/groupless " method="get " role="form ">
-        <input type="submit " name="submit " value="Go to students " />
-    </form>
 </div>
 {% endif %} {% endblock %}

@@ -9,9 +9,6 @@ helper = src.Helper()
 
 app = Flask(__name__)
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
-app.config["UPLOAD_PATH"] = "uploads"
-helper = src.Helper()
-
 
 # @app.route("/")</form></form>
 # def in<</button>/button>dex():
@@ -64,11 +61,28 @@ def find_class():
         student = helper.get_person_by_email(current_user)
         if (len(student) == 0):
             return render_template("find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :(")
-        if student[0].group_number is None:
-            return render_template("make_group.html", title=title, students=helper.people)
-        else:
-            return render_template("show_group.html", title=title, group_members=helper.get_group_members(student[0].group_number))
-
+        if student[0].group_number is 0:
+            return render_template("make_group.html", title=title, students=helper.people, teacher=teacher,)
+        return render_template("show_group.html", title=title, group_members=helper.get_group_members(student[0].group_number))
+    else:
+        return render_template("find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :(")
+    
+@app.route("/save_group", methods=["POST"])
+def save_group():
+    student1 = request.form.get("student1")
+    student2 = request.form.get("student2")
+    student3 = request.form.get("student3")
+    teacher = request.form.get("teacher")
+    print(f'TEACHER: {teacher}')
+    if student1 == student2 or student2 == student3 or student1 == student3 or student1 == current_user or student2 == current_user or student3 == current_user:
+        return render_template("make_group.html", title=title, students=helper.people, teacher=teacher, error="Please select different students.")
+    elif not student1 or not student2 or not student3:
+        return render_template("make_group.html", title=title, student=helper.people, teacher=teacher, error="Please select three students")
+    else:
+        students = [helper.get_person_by_email(student1)[0], helper.get_person_by_email(student2)[0], helper.get_person_by_email(student3)[0], helper.get_person_by_email(current_user)[0]]
+        group = helper.make_group(students, helper.get_next_group_number(), teacher)
+        return render_template("show_group.html", title=title, students=group.get_group_members())
+        
 
 @app.route("/upload", methods=["POST"])
 def upload_files():
@@ -86,6 +100,7 @@ def upload_files():
 @app.route("/students", methods=["POST", "GET"])
 def students():
     filename = current_user.split("@")[0].strip(".") + ".csv"
+    helper.get_people_from_csv(filename)
     return render_template("students.html", title=title, students=helper.people)
 
 

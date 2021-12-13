@@ -3,16 +3,16 @@ from Print_student import Print_student
 
 
 class Student(Person):
-    def __init__(self, number, gender, given_name, surname, email, GUID):
+    def __init__(self, number, gender, given_name, surname, email, GUID, group_number):
         self.number = number
         self.gender = gender
         self.given_name = given_name
         self.surname = surname
         self.email = email
         self.GUID = GUID
-        self.group_number = None
+        self.group_number = group_number
         self.is_teacher = False
-        self.print_strategy = Print_student();
+        self.print_strategy = Print_student()
 
     def __str__(self):
         return "{} {} {}".format(self.number, self.given_name, self.surname)

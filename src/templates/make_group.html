@@ -1,3 +1,43 @@
-{% extends "index.html" %} {% block content %} {% if students %}
-<h1>make_group.html :)</h1>
+{% extends "index.html" %} {% block content %} {% if students %} {% if error %}
+<p class="text-danger">{{error}}</p> {% endif %}
+<form action="/save_group" method="POST">
+    <div class="container" style="margin-left:40vw">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Student 1</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="student1">
+            <option >Select...</option>
+            {% for student in students %} {% if not student['is_teacher'] and student['group_number'] == 0 %}
+            <option value={{ student['email'] }} name={{student['number']}} > {{ student['given_name'] }} {{ student['surname'] }}</option>
+            {% endif %} {% endfor %}
+        </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect02">Student 2</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect02" name="student2">
+                <option >Select...</option>
+                {% for student in students %} {% if not student['is_teacher'] and student['group_number'] == 0 %}
+                <option value={{ student['email'] }} name={{student['number']}} > {{ student['given_name'] }} {{ student['surname'] }}</option>
+                {% endif %} {% endfor %}
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect03">Student 3</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect03" name="student3">
+                <option >Select...</option>
+            {% for student in students %} {% if not student['is_teacher'] and student['group_number'] == 0 %}
+            <option value={{ student['email'] }} name={{student['number']}} > {{ student['given_name'] }} {{ student['surname'] }}</option>
+            {% endif %} {% endfor %}
+        </select>
+        </div>
+        <input type="hidden" name="teacher" id="teacher" value={{teacher}}></input>
+        <button type="submit" class="btn btn-primary" name="submit">Maak groep</button>
+    </div>
+</form>
+
 {% endif %} {% endblock %}

@@ -1,3 +1,29 @@
 {% extends "index.html" %} {% block content %} {% if students %}
-<h1>show_group.html :)</h1>
-{% endblock %}
+<div class='container' style="margin-left: 275px">
+    <h1>Your group:</h1>
+    <table class="table table-light">
+        <thead>
+            <th scope="col ">Number</th>
+            <th scope="col ">Gender</th>
+            <th scope="col ">GivenName</th>
+            <th scope="col ">Surname</th>
+            <th scope="col ">EmailAddress</th>
+            <th scope="col ">GUID</th>
+            <th scope="col ">Group Number</th>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <th scope="row ">{{ student['number'] }}</td>
+                    <td>{{ student['gender'] }}</td>
+                    <td>{{ student['given_name'] }}</td>
+                    <td>{{ student['surname'] }}</td>
+                    <td>{{ student['email'] }}</td>
+                    <td>{{ student['GUID'] }}</td>
+                    <td>{{ student['group_number'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %} {% endblock %}

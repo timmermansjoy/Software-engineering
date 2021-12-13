@@ -3,13 +3,14 @@ from Print_teacher import Print_teacher
 
 
 class Teacher(Person):
-    def __init__(self, number, gender, given_name, surname, email, GUID):
+    def __init__(self, number, gender, given_name, surname, email, GUID, group_number):
         self.number = number
         self.gender = gender
         self.given_name = given_name
         self.surname = surname
         self.email = email
         self.GUID = GUID
+        self.group_number = group_number
         self.is_teacher = True
         self.print_person = Print_teacher()
 
