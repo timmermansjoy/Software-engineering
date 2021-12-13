@@ -4,6 +4,7 @@
 from IPrintable import IPrintable
 import abc
 
+
 class Person(IPrintable):
     @abc.abstractmethod
     def __str__(self):
