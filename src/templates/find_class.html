@@ -1,0 +1,15 @@
+{% extends "index.html" %} {% block content %}
+<h1>Hello student :)</h1>
+<p class="center">Please enter your teacher's email address below.</p>
+<div class='container'>
+    <form action="/find_class" method="post">
+        <div class="form-group" class="test">
+            {% if error %}
+            <p class="text-danger">{{error}}</p>
+            {% endif %}
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Submit</button>
+    </form>
+</div> {% endblock %}

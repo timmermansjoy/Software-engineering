@@ -1,4 +1,5 @@
-from IPerson import Person
+from Person import Person
+from Print_student import Print_student
 
 
 class Student(Person):
@@ -11,6 +12,7 @@ class Student(Person):
         self.GUID = GUID
         self.group_number = None
         self.is_teacher = False
+        self.print_strategy = Print_student();
 
     def __str__(self):
         return "{} {} {}".format(self.number, self.given_name, self.surname)

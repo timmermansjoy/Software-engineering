@@ -39,7 +39,7 @@ def upload_view():
     current_user = request.form.get("email")
     message = ""
     if "student.pxl.be" in current_user:
-        return render_template("make_groups.html")
+        return render_template("find_class.html")
     elif "pxl.be" in current_user:
         name = current_user.split("@")[0].strip(".")
         if os.path.exists(f"./data/{name}.csv"):
@@ -51,6 +51,23 @@ def upload_view():
         return render_template(
             "index.html", title=title, error="Please make sure you are using your organization's email."
         )
+
+
+@app.route("/find_class", methods=["POST"])
+def find_class():
+    teacher = request.form.get("email")
+    name = teacher.split("@")
+    if name[1] != 'pxl.be':
+        return render_template("find_class.html", title=title, error="Please enter a valid teacher email.")
+    elif os.path.exists("./data/{}.csv".format(name[0].strip('.'))):
+        helper.get_people_from_csv("{}.csv".format(name[0].strip('.')))
+        student = helper.get_person_by_email(current_user)
+        if (len(student) == 0):
+            return render_template("find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :(")
+        if student[0].group_number is None:
+            return render_template("make_group.html", title=title, students=helper.people)
+        else:
+            return render_template("show_group.html", title=title, group_members=helper.get_group_members(student[0].group_number))
 
 
 @app.route("/upload", methods=["POST"])

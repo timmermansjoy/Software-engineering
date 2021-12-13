@@ -67,6 +67,12 @@ class Helper:
 
     def get_people_by_name(self, given_name):
         return [person for person in self.people if person.given_name == given_name]
+    
+    def get_person_by_email(self, email):
+        return [person for person in self.people if person.email == email]
+    
+    def get_group_members(self, group_number):
+        return [person for person in self.people if person.group_number == group_number]
 
     def get_groupless_students(self):
         return [person for person in self.people if not person.is_teacher and not person.group_number]

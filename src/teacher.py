@@ -1,4 +1,5 @@
-from IPerson import Person
+from Person import Person
+from Print_teacher import Print_teacher
 
 
 class Teacher(Person):
@@ -10,6 +11,7 @@ class Teacher(Person):
         self.email = email
         self.GUID = GUID
         self.is_teacher = True
+        self.print_person = Print_teacher()
 
     def __str__(self):
         return f"{self.number} {self.given_name} {self.surname}"
