@@ -1,4 +1,5 @@
 {% extends "index.html" %} {% block content %} {% if students %} {% if error %}
+<h1>Welcome {{ message }}</h1>
 <p class="text-danger">{{error}}</p> {% endif %}
 <form action="/save_group" method="POST">
     <div class="container" style="margin-left:40vw">
