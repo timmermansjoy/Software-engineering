@@ -6,6 +6,7 @@ from src.CsvWriter import CsvWriter
 from src.GroupFactory import GroupFactory
 from src.Populator import Populator
 
+
 @pytest.fixture()
 def sut():
     sut = src.Student(1, "m", "firstname", "lastname", "f.n@student.pxl.be", "test12345", 0)
@@ -17,13 +18,13 @@ class TestResource:
         assert sut.group_number is 0
 
     def test_studentWithGroupHasGroupNumber(self, sut):
-        backup = CsvReader.read_file('test.csv')
+        backup = CsvReader.read_file("test.csv")
         student_list = [sut]
         populator = Populator()
-        populator.populate_people('test.csv')
+        populator.populate_people("test.csv")
         factory = GroupFactory(populator)
-        GroupFactory.create_group(factory, student_list, 'test.csv' )
-        CsvWriter.write_file(backup, 'test.csv')
+        GroupFactory.create_group(factory, student_list, "test.csv")
+        CsvWriter.write_file(backup, "test.csv")
         assert sut.group_number == 1
 
     def test_studentInfoOutput(self, sut):
