@@ -35,8 +35,10 @@ def upload_view():
     global current_user
     current_user = request.form.get("email")
     if not EmailParser.is_valid(current_user):
-        return render_template("index.html", title=title, error="Please make sure you are using your organization's email.")
-    
+        return render_template(
+            "index.html", title=title, error="Please make sure you are using your organization's email."
+        )
+
     if EmailParser.is_student(current_user):
         return render_template("find_class.html")
 
@@ -46,10 +48,11 @@ def upload_view():
         if os.path.exists(f"./data/{filename}"):
             people = populator.populate_people(filename)
             person = personFinder.get_person_by_email(filename, current_user)
-            return render_template("students.html", title=title, students=people, message=person.print_strategy.print_person(person))
+            return render_template(
+                "students.html", title=title, students=people, message=person.print_strategy.print_person(person)
+            )
 
         return render_template("upload.html", title=title, email=current_user)
-    
 
 
 @app.route("/find_class", methods=["POST"])
@@ -61,17 +64,30 @@ def find_class():
 
     filename = EmailParser.get_filename_from_email(teacher)
     if not os.path.exists(f"./data/{filename}"):
-        return render_template("find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :(")
+        return render_template(
+            "find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :("
+        )
 
     people = populator.populate_people(filename)
     student = personFinder.get_person_by_email(filename, current_user)
     if not student:
-        return render_template("find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :(")
+        return render_template(
+            "find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :("
+        )
 
     if student.group_number == 0:
-        return render_template("make_group.html", title=title, students=people, teacher=teacher, message=student.print_strategy.print_person(student))
+        return render_template(
+            "make_group.html",
+            title=title,
+            students=people,
+            teacher=teacher,
+            message=student.print_strategy.print_person(student),
+        )
     members = groupFactory.get_group_members(student.group_number, filename)
-    return render_template("show_group.html", title=title, students=members, message=student.print_strategy.print_person(student))
+    return render_template(
+        "show_group.html", title=title, students=members, message=student.print_strategy.print_person(student)
+    )
+
 
 @app.route("/save_group", methods=["POST"])
 def save_group():
@@ -83,16 +99,22 @@ def save_group():
     people = populator.populate_people(filename)
     try:
         students = [
-            personFinder.get_person_by_email(filename ,student1),
-            personFinder.get_person_by_email(filename ,student2),
+            personFinder.get_person_by_email(filename, student1),
+            personFinder.get_person_by_email(filename, student2),
             personFinder.get_person_by_email(filename, student3),
             personFinder.get_person_by_email(filename, current_user),
         ]
         group = groupFactory.create_group(students, filename)
-        return render_template("show_group.html", title=title, students=group.get_group_members(), message=students[3].print_strategy.print_person(students[3]))
+        return render_template(
+            "show_group.html",
+            title=title,
+            students=group.get_group_members(),
+            message=students[3].print_strategy.print_person(students[3]),
+        )
     except Exception as e:
         print(e)
-        return render_template("make_group.html", title=title, students=people, teacher=teacher, error='Invalid group')
+        return render_template("make_group.html", title=title, students=people, teacher=teacher, error="Invalid group")
+
 
 @app.route("/upload", methods=["POST"])
 def upload_files():

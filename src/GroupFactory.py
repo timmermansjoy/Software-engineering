@@ -3,7 +3,8 @@ from Populator import Populator
 from CsvReader import CsvReader
 from CsvWriter import CsvWriter
 
-class GroupFactory():
+
+class GroupFactory:
     def __init__(self, populator=None):
         self.populator = populator if populator is not None else Populator()
 
@@ -36,5 +37,3 @@ class GroupFactory():
                 return False
             uniques.append(member)
         return True
-
-
