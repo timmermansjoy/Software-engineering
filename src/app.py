@@ -4,7 +4,7 @@ from src.CsvReader import CsvReader
 from werkzeug.utils import secure_filename
 import pandas as pd
 import src
-from src import student
+from src import Student
 from EmailParser import EmailParser
 from Populator import Populator
 from PersonFinder import PersonFinder

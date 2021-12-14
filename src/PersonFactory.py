@@ -1,4 +1,4 @@
-from student import Student
+from src.Student import Student
 from teacher import Teacher
 from EmailParser import EmailParser
 
