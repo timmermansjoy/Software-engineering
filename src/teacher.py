@@ -12,7 +12,7 @@ class Teacher(Person):
         self.GUID = GUID
         self.group_number = group_number
         self.is_teacher = True
-        self.print_person = Print_teacher()
+        self.print_strategy = Print_teacher()
 
     def __str__(self):
         return f"{self.number} {self.given_name} {self.surname}"

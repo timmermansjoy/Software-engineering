@@ -1,22 +1,22 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, make_response
+from src.CsvReader import CsvReader
 from werkzeug.utils import secure_filename
 import pandas as pd
 import src
-from src import student
-
-helper = src.Helper()
+from src import Student
+from EmailParser import EmailParser
+from Populator import Populator
+from PersonFinder import PersonFinder
+from GroupFactory import GroupFactory
 
 app = Flask(__name__)
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
 
-# @app.route("/")</form></form>
-# def in<</button>/button>dex():
-#     title = "Software Engineering"
-#     return render_template("form.html", title=title)
-
-
 title = "ClassMate"
+populator = Populator()
+personFinder = PersonFinder(populator)
+groupFactory = GroupFactory(populator)
 
 
 @app.route("/")
@@ -26,7 +26,7 @@ def index():
 
 @app.route("/uploader", methods=["GET"])
 def show_view():
-    if current_user.split("@")[1] == "pxl.be":
+    if EmailParser.is_teacher(current_user):
         return
 
 
@@ -34,49 +34,59 @@ def show_view():
 def upload_view():
     global current_user
     current_user = request.form.get("email")
-    message = ""
-    if "student.pxl.be" in current_user:
-        return render_template("find_class.html")
-    elif "pxl.be" in current_user:
-        name = current_user.split("@")[0].strip(".")
-        if os.path.exists(f"./data/{name}.csv"):
-            helper.get_people_from_csv(f"{name}.csv")
-            return render_template("students.html", title=title, students=helper.people)
-        return render_template("upload.html", title=title, email=current_user, message=message)
-    else:
-        message = "INVALID EMAIL"
+    if not EmailParser.is_valid(current_user):
         return render_template(
             "index.html", title=title, error="Please make sure you are using your organization's email."
         )
+
+    if EmailParser.is_student(current_user):
+        return render_template("find_class.html")
+
+    if EmailParser.is_teacher(current_user):
+        filename = EmailParser.get_filename_from_email(current_user)
+
+        if os.path.exists(f"./data/{filename}"):
+            people = populator.populate_people(filename)
+            person = personFinder.get_person_by_email(filename, current_user)
+            return render_template(
+                "students.html", title=title, students=people, message=person.print_strategy.print_person(person)
+            )
+
+        return render_template("upload.html", title=title, email=current_user)
 
 
 @app.route("/find_class", methods=["POST"])
 def find_class():
     teacher = request.form.get("email")
-    name = teacher.split("@")
-    if name[1] != "pxl.be":
+
+    if not EmailParser.is_teacher(teacher):
         return render_template("find_class.html", title=title, error="Please enter a valid teacher email.")
-    elif os.path.exists("./data/{}.csv".format(name[0].strip("."))):
-        helper.get_people_from_csv("{}.csv".format(name[0].strip(".")))
-        student = helper.get_person_by_email(current_user)
-        if len(student) == 0:
-            return render_template(
-                "find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :("
-            )
-        if student[0].group_number is 0:
-            return render_template(
-                "make_group.html",
-                title=title,
-                students=helper.people,
-                teacher=teacher,
-            )
-        return render_template(
-            "show_group.html", title=title, group_members=helper.get_group_members(student[0].group_number)
-        )
-    else:
+
+    filename = EmailParser.get_filename_from_email(teacher)
+    if not os.path.exists(f"./data/{filename}"):
         return render_template(
             "find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :("
         )
+
+    people = populator.populate_people(filename)
+    student = personFinder.get_person_by_email(filename, current_user)
+    if not student:
+        return render_template(
+            "find_class.html", title=title, error="Your teacher has not uploaded your classfile yet :("
+        )
+
+    if student.group_number == 0:
+        return render_template(
+            "make_group.html",
+            title=title,
+            students=people,
+            teacher=teacher,
+            message=student.print_strategy.print_person(student),
+        )
+    members = groupFactory.get_group_members(student.group_number, filename)
+    return render_template(
+        "show_group.html", title=title, students=members, message=student.print_strategy.print_person(student)
+    )
 
 
 @app.route("/save_group", methods=["POST"])
@@ -85,35 +95,25 @@ def save_group():
     student2 = request.form.get("student2")
     student3 = request.form.get("student3")
     teacher = request.form.get("teacher")
-    print(f"TEACHER: {teacher}")
-    if (
-        student1 == student2
-        or student2 == student3
-        or student1 == student3
-        or student1 == current_user
-        or student2 == current_user
-        or student3 == current_user
-    ):
-        return render_template(
-            "make_group.html",
-            title=title,
-            students=helper.people,
-            teacher=teacher,
-            error="Please select different students.",
-        )
-    elif not student1 or not student2 or not student3:
-        return render_template(
-            "make_group.html", title=title, student=helper.people, teacher=teacher, error="Please select three students"
-        )
-    else:
+    filename = EmailParser.get_filename_from_email(teacher)
+    people = populator.populate_people(filename)
+    try:
         students = [
-            helper.get_person_by_email(student1)[0],
-            helper.get_person_by_email(student2)[0],
-            helper.get_person_by_email(student3)[0],
-            helper.get_person_by_email(current_user)[0],
+            personFinder.get_person_by_email(filename, student1),
+            personFinder.get_person_by_email(filename, student2),
+            personFinder.get_person_by_email(filename, student3),
+            personFinder.get_person_by_email(filename, current_user),
         ]
-        group = helper.make_group(students, helper.get_next_group_number(), teacher)
-        return render_template("show_group.html", title=title, students=group.get_group_members())
+        group = groupFactory.create_group(students, filename)
+        return render_template(
+            "show_group.html",
+            title=title,
+            students=group.get_group_members(),
+            message=students[3].print_strategy.print_person(students[3]),
+        )
+    except Exception as e:
+        print(e)
+        return render_template("make_group.html", title=title, students=people, teacher=teacher, error="Invalid group")
 
 
 @app.route("/upload", methods=["POST"])
@@ -124,23 +124,24 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config["UPLOAD_EXTENSIONS"]:
             return "Invalid file format", 400
-        filename = current_user.split("@")[0].strip(".") + ".csv"
+        filename = EmailParser.get_filename_from_email(current_user)
         uploaded_file.save(os.path.join("./data/", filename))
     return redirect(url_for("students"))
 
 
 @app.route("/students", methods=["POST", "GET"])
 def students():
-    filename = current_user.split("@")[0].strip(".") + ".csv"
-    helper.get_people_from_csv(filename)
-    return render_template("students.html", title=title, students=helper.people)
+    filename = EmailParser.get_filename_from_email(current_user)
+    people = populator.populate_people(filename)
+    return render_template("students.html", title=title, students=people)
 
 
 @app.route("/send", methods=["POST"])
 def send():
     csv_content = request.files["csv_file"]
     csv_content.save("temp/students.csv")
-    return render_template("form.html", students=helper.people)
+    people = populator.populate_people(csv_content)
+    return render_template("form.html", students=people)
 
 
 if __name__ == "__main__":
