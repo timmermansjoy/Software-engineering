@@ -1,0 +1,6 @@
+Number,Gender,GivenName,Surname,EmailAddress,GUID,group_number
+1,male,firstname,lastname,f.n@student.pxl.be,test12345,0
+2,male,firstname1,lastname1,f.n1@student.pxl.be,test1,0
+3,female,firstname2,lastname2,f.n2@student.pxl.be,test2,0
+4,male,firstname3,lastname3,f.n3@student.pxl.be,test3,0
+5,male,Joffrey,Blaak,JoffreyBlaak@pxl.be,dda47025-ee76-4751-88bb-19c9a84fd6f5,0

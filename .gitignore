@@ -144,3 +144,5 @@ cython_debug/
 .vscode/
 .idea/
 data/*
+#add the test.csv to the repo for tests
+!data/test.csv
