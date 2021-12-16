@@ -1,8 +1,8 @@
-import src.Person
+from src.Person import Person
 from Print_student import Print_student
 
 
-class Student(src.Person.Person):
+class Student(Person):
     def __init__(self, number, gender, given_name, surname, email, GUID, group_number):
         self.number = number
         self.gender = gender
