@@ -1,4 +1,3 @@
-from IPrintable import IPrintable
 import abc
 
 
