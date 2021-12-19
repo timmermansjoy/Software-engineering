@@ -1,6 +1,6 @@
 from src.Student import Student
-from teacher import Teacher
-from EmailParser import EmailParser
+from src.teacher import Teacher
+from src.EmailParser import EmailParser
 
 
 class PersonFactory:

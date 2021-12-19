@@ -1,4 +1,4 @@
-from Populator import Populator
+from src.Populator import Populator
 
 
 class PersonFinder:

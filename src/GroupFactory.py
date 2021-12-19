@@ -1,7 +1,7 @@
-from group import Group
-from Populator import Populator
-from CsvReader import CsvReader
-from CsvWriter import CsvWriter
+from src.group import Group
+from src.Populator import Populator
+from src.CsvReader import CsvReader
+from src.CsvWriter import CsvWriter
 
 
 class GroupFactory:

@@ -1,5 +1,5 @@
-from Person import Person
-from Print_teacher import Print_teacher
+from src.Person import Person
+from src.Print_teacher import Print_teacher
 
 
 class Teacher(Person):
