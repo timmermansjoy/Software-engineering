@@ -1,7 +1,7 @@
-from CsvReader import CsvReader
-from CsvWriter import CsvWriter
-from PersonFactory import PersonFactory
-from EmailParser import EmailParser
+from src.CsvReader import CsvReader
+from src.CsvWriter import CsvWriter
+from src.PersonFactory import PersonFactory
+from src.EmailParser import EmailParser
 
 
 class Populator:
