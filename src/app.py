@@ -6,9 +6,9 @@ import pandas as pd
 import src
 from src import Student
 from src.EmailParser import EmailParser
-from Populator import Populator
-from PersonFinder import PersonFinder
-from GroupFactory import GroupFactory
+from src.Populator import Populator
+from src.PersonFinder import PersonFinder
+from src.GroupFactory import GroupFactory
 
 app = Flask(__name__)
 app.config["UPLOAD_EXTENSIONS"] = [".csv", ".txt"]
