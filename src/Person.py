@@ -1,7 +1,7 @@
 # from abc import ABC
 # from abc import abstractmethod
 # from abc import ABCMeta
-from IPrintable import IPrintable
+from src.IPrintable import IPrintable
 import abc
 
 
