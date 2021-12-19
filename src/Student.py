@@ -7,7 +7,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
 from src.Person import Person
-from Print_student import Print_student
+from src.Print_student import Print_student
 
 
 class Student(Person):
