@@ -1,4 +1,4 @@
-from Print_strategy import Print_strategy
+from src.Print_strategy import Print_strategy
 
 
 class Print_student(Print_strategy):
